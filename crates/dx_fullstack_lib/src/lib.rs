@@ -11,6 +11,13 @@ mod client_types;
 pub use client_types::*;
 
 mod signal_container;
+
 pub use signal_container::*;
+
+#[cfg(feature = "server")]
+mod auth;
+
+#[cfg(feature = "server")]
+pub use auth::*;
 
 pub use dx_fullstack_lib_macro::*;
