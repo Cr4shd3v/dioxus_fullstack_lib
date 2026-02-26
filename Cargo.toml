@@ -1,0 +1,11 @@
+[workspace]
+members = ["crates/*"]
+resolver = "3"
+
+[workspace.dependencies]
+dioxus = "^0.7"
+tokio = "^1"
+syn = "^2"
+quote = "^1"
+
+dx_fullstack_lib_macro = { path = "crates/dx_fullstack_lib_macro" }

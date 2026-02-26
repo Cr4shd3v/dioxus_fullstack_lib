@@ -1,0 +1,11 @@
+[package]
+name = "dx_fullstack_lib_macro"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+syn = { workspace = true, features = ["full"] }
+quote = { workspace = true }
+
+[lib]
+proc-macro = true

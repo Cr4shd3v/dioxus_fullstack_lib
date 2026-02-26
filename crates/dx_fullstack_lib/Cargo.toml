@@ -1,0 +1,19 @@
+[package]
+name = "dx_fullstack_lib"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+dioxus = { workspace = true, features = ["fullstack"] }
+tokio = { workspace = true, features = ["full"], optional = true }
+dx_fullstack_lib_macro = { workspace = true }
+
+[features]
+default = []
+server = [
+    "dioxus/server",
+    "dep:tokio",
+]
+web = [
+    "dioxus/web"
+]
