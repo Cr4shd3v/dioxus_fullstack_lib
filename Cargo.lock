@@ -699,6 +699,7 @@ dependencies = [
  "dioxus-html",
  "dioxus-liveview",
  "dioxus-logger",
+ "dioxus-router",
  "dioxus-server",
  "dioxus-signals",
  "dioxus-ssr",
@@ -1269,6 +1270,14 @@ dependencies = [
  "wasm-bindgen-futures",
  "wasm-streams",
  "web-sys",
+]
+
+[[package]]
+name = "dioxus_tabler"
+version = "0.1.0"
+dependencies = [
+ "dioxus",
+ "uuid",
 ]
 
 [[package]]
