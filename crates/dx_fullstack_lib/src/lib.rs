@@ -21,3 +21,4 @@ mod auth;
 pub use auth::*;
 
 pub use dx_fullstack_lib_macro::*;
+pub use dioxus_pagination as pagination;

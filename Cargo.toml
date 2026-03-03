@@ -9,5 +9,8 @@ syn = "^2"
 quote = "^1"
 argon2 = "^0.6.0-rc.7"
 uuid = "^1"
+serde = "^1"
+sea-orm = "^2.0.0-rc.30"
 
 dx_fullstack_lib_macro = { path = "crates/dx_fullstack_lib_macro" }
+dioxus_pagination = { path = "crates/dioxus_pagination" }

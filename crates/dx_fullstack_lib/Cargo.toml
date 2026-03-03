@@ -6,8 +6,10 @@ edition = "2024"
 [dependencies]
 dioxus = { workspace = true, features = ["fullstack"] }
 tokio = { workspace = true, features = ["full"], optional = true }
-dx_fullstack_lib_macro = { workspace = true }
 argon2 = { workspace = true, optional = true }
+
+dx_fullstack_lib_macro = { workspace = true }
+dioxus_pagination = { workspace = true }
 
 [features]
 default = []
@@ -15,7 +17,9 @@ server = [
     "dioxus/server",
     "dep:tokio",
     "dep:argon2",
+    "dioxus_pagination/server",
 ]
 web = [
-    "dioxus/web"
+    "dioxus/web",
+    "dioxus_pagination/web",
 ]

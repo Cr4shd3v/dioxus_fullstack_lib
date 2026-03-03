@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/crates/dx_fullstack_lib_macro/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/crates/dioxus_tabler/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/crates/dioxus_pagination/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
