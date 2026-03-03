@@ -1,6 +1,8 @@
 use std::slice::Iter;
 use serde::{Deserialize, Serialize};
 
+pub type PaginationResult<T> = dioxus::Result<Pagination<T>>;
+
 #[derive(Serialize, Deserialize)]
 pub struct Pagination<T> {
     pub number_of_items: u64,
@@ -27,7 +29,7 @@ pub trait PaginationIter<T> {
     fn items_iter(&self) -> dioxus::Result<Iter<'_, T>>;
 }
 
-impl<T> PaginationIter<T> for &dioxus::Result<Pagination<T>> {
+impl<T> PaginationIter<T> for &PaginationResult<T> {
     fn items_iter(&self) -> dioxus::Result<Iter<'_, T>> {
         self.as_ref().map(|i| i.iter()).map_err(|e| e.clone())
     }
