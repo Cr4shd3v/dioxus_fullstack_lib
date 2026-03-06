@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 pub type PaginationResult<T> = dioxus::Result<Pagination<T>>;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Pagination<T> {
     pub number_of_items: u64,
     pub number_of_pages: u64,
@@ -54,7 +54,8 @@ mod server {
             transform: impl Fn(EL::ModelEx) -> T,
         ) -> Result<Pagination<T>, DbErr> {
             let nums = pagination.num_items_and_pages().await?;
-            let page = pagination.fetch_page(page).await?;
+            // -1 because page parameter is 1 indexed, but page param in sea-orm is 0-indexed
+            let page = pagination.fetch_page(page - 1).await?;
 
             Ok(Pagination {
                 number_of_items: nums.number_of_items,
