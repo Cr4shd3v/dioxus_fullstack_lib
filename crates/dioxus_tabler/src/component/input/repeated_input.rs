@@ -27,6 +27,7 @@ pub fn RepeatedInputField(
             error.set("Inputs do not match!");
         } else {
             error.set("");
+            value.set(value1.cloned());
         }
     });
 
