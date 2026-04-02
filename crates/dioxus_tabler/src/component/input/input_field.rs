@@ -22,6 +22,8 @@ pub fn TextInputField(
     on_blur: EventHandler,
     #[props(into, optional)]
     on_input: EventHandler,
+    #[props(into, optional)]
+    invalid_message: Signal<String>,
 ) -> Element {
     let input_id = format!("form_{name}");
     let mut label_class = "form-label".to_string();
@@ -29,10 +31,21 @@ pub fn TextInputField(
         label_class.push_str(" required");
     }
 
-    let mut input_class = "form-control".to_string();
-    if !class.is_empty() {
-        input_class = format!("form-control {class}");
-    }
+    let base_input_class = if !class.is_empty() {
+        format!("form-control {class}")
+    } else {
+        "form-control".to_string()
+    };
+
+    let mut input_class = use_signal(|| base_input_class.clone());
+
+    use_effect(move || {
+        if invalid_message.is_empty() {
+            input_class.set(base_input_class.clone());
+        } else {
+            input_class.set(format!("{base_input_class} is-invalid"));
+        }
+    });
 
     rsx! {
         label {
@@ -61,6 +74,12 @@ pub fn TextInputField(
             onblur: move |_| {
                 on_blur.call(());
             },
+        }
+        if !invalid_message.is_empty() {
+            div {
+                class: "invalid-feedback",
+                {invalid_message}
+            }
         }
     }
 }

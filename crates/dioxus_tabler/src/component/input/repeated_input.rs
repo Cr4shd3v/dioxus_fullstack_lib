@@ -20,13 +20,13 @@ pub fn RepeatedInputField(
     let repeat_name = format!("{name}_repeat");
     let value1 = use_signal(|| value.read().cloned());
     let value2 = use_signal(|| value.read().cloned());
-    let mut error = use_signal(|| "");
+    let mut error = use_signal(|| String::new());
 
     use_effect(move || {
         if *value1.read() != *value2.read() {
-            error.set("Inputs do not match!");
+            error.set("Inputs do not match!".to_string());
         } else {
-            error.set("");
+            error.set(String::new());
             value.set(value1.cloned());
         }
     });
@@ -40,22 +40,8 @@ pub fn RepeatedInputField(
                 label,
                 required,
                 value: value1,
-                class: if !error.is_empty() {
-                    "is-invalid"
-                } else {
-                    if value1.is_empty() {
-                        ""
-                    } else {
-                        "is-valid"
-                    }
-                },
+                invalid_message: error,
             },
-            if !error.is_empty() {
-                div {
-                    class: "invalid-feedback",
-                    {error}
-                }
-            }
         }
         div {
             class: container_class,
@@ -65,22 +51,8 @@ pub fn RepeatedInputField(
                 label: repeat_label,
                 required,
                 value: value2,
-                class: if !error.is_empty() {
-                    "is-invalid"
-                } else {
-                    if value2.is_empty() {
-                        ""
-                    } else {
-                        "is-valid"
-                    }
-                },
+                invalid_message: error,
             },
-            if !error.is_empty() {
-                div {
-                    class: "invalid-feedback",
-                    {error}
-                }
-            }
         }
     }
 }
