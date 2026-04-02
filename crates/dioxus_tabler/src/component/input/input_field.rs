@@ -31,7 +31,7 @@ pub fn TextInputField(
 
     let mut input_class = "form-control".to_string();
     if !class.is_empty() {
-        input_class.push_str(&*class);
+        input_class = format!("form-control {class}");
     }
 
     rsx! {
